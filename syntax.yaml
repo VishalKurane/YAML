@@ -1,0 +1,151 @@
+# Dictionary in YAML --> Key : Value
+Fruit : "Apple"
+Number : 10
+
+#OR
+{Fruit: "Apple", Number: 10}
+
+---
+#############################################################
+
+# List in YAML format
+- Apple
+- apple
+- Mango
+- mango
+
+---
+Cities:
+  - Pune
+  - Mumbai
+  - Kolhapur
+
+# OR
+
+Cities: [Pune, Mumbai, Kolhapur]
+
+---
+#############################################################
+
+# Data Types in YAML
+
+# 1. String variables
+myself: Vishal Kurane
+Addres: "Kolhapur"
+Age: '23'
+
+# Writing a content in multiple lines
+Address: >
+  A2-14 Malalaxmi Complex
+  Opp. to Nisarg City,
+  Wakad, PUNE 411057
+
+# OR
+
+Address: |
+  A2-14 Malalaxmi Complex
+  Opp. to Nisarg City,
+  Wakad, PUNE 411057
+
+# 2. Interger
+Number: 10
+
+# 3. Floating Point Number
+Percentage: 90.30
+
+# 4. Boolean Value (True or False)
+Value: No # n, N, false, False, False
+Value: Yes # y, Y, true, True, TRUE
+
+#############################################################
+# Specify the data type manually
+
+# String
+myself: !!str Vishal Kurane
+
+# Integer
+Number: !!int 0
+positiveNum: !!int 45
+negativeNum: !!int -45
+binaryNum: !!int 0b11001
+octalNum: !!int 06574
+hexNum: !!int 0x45
+commaValues: !!int +5_00_000 #5,00,400
+exponentiolValue: 6.025E56
+
+# Floating Point Number
+marks: !!float 90.30
+infinite: !!float .inf
+not a num: .nan
+
+# Boolean value
+booleanValue: !!bool No
+booleanValue: !!bool Yes
+
+# Null
+Data: !!nul Null # or nul NULL ~
+~: this is a null key
+
+# Dates and Time
+date: !!timestamp 2024-08-29
+India Time: 2024-08-29T02:58:42.10 +5:30
+No Time Zone: 2024-08-29T02:58:42.10
+
+#############################################################
+
+# Lists and Nested List: Caled Seq and Sparse Seq (If any value is Null)
+Student_data:
+  - name
+  - Roll_No
+  - Subjects:
+      - Eng
+      - Maths
+      - Science
+      -
+  - Class
+
+---
+#############################################################
+
+# Dictionary and Nested Dictionary
+Student_data:
+  - name: Vishal
+  - Roll_No: 111
+  - Subjects:
+      - Eng
+      - Maths
+      - Science
+      -
+  - Class: 5th
+
+#############################################################
+
+# Set
+Name: !!set
+  ? Vishal
+  ? Apurv
+  ? Rahul
+  ? Vishal
+
+#############################################################
+
+# Re-using existing Properties using Anchor Tags
+Subjects: &subs
+  - Eng
+  - Maths
+  - Science
+
+Students:
+  - Name: Vishal
+  - RollNo: 100
+  - Subjects:
+      - Eng
+      - Maths
+      - Science
+
+Students:
+  - Name: Vishal
+  - RollNo: 100
+  <<: *subs
+
+#############################################################
